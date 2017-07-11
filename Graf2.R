@@ -22,4 +22,8 @@ p <- plot_ly(inv, labels = ~Sector, values = ~Inversion, type = 'pie',
   layout(title = 'Montos de inversión por sector en etapa de Ejecución',
          xaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE),
          yaxis = list(showgrid = FALSE, zeroline = FALSE, showticklabels = FALSE))
-p
+
+  link_inv_sec = api_create(p, filename = "Aga-Sector")
+  
+  link_inv_sec
+  

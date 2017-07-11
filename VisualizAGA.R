@@ -4,12 +4,11 @@ library(plyr)
 
 ###Carga de documento central####
 
-aga <-read_csv("~/Documents/VisualizacionesAGA/BD_AGA-_Alianza_de_Gobierno_Abierto.csv")
-#View(aga)
+aga <-read_csv("~/Documents/VisualizacionAGA/BD_AGA-_Alianza_de_Gobierno_Abierto.csv")
+View(aga)
 
 ###las credenciales para subir las gr`àficas`
 oli <- plotly(username="oliabherrera", key="1Cth6ncpLnml54WrFpoY")
-
 
 ##Principales inversiones por estado y por infraestructura
 
@@ -36,7 +35,7 @@ for ( i in 1: 5){
   sector<-subset(inv, Sector==subsecretaria[i,])
   colnames(sector)[1]<-"Estado"
   colnames(sector)[2]<-"Subsector"
- 
+  
   data <- merge(estados, sector, by=c("Estado"), all = TRUE)
   data[is.na(data)] <- 0
   data$Subsector<-subsecretaria[i,]
@@ -61,27 +60,13 @@ for ( i in 1: 5){
 }
 
 
-
-plot_ly(prueba, x = ~Estado, y = ~Aeropuertos, type = 'bar', name = 'Aeropuertos') %>%
+inv<-plot_ly(prueba, x = ~Estado, y = ~Aeropuertos, type = 'bar', name = 'Aeropuertos') %>%
   add_trace(y = ~Carreteras, name = 'Carreteras') %>%
   add_trace(y = ~Marítimo, name = 'Marítimo') %>%
   add_trace(y = ~Ferroviario, name = 'Ferroviario') %>%
   add_trace(y = ~Telecomunicaciones, name = 'Telecomunicaciones') %>%
   layout(yaxis = list(title = 'Inversión Total'), barmode = 'stack')
 
-####### Total de proyectos por estado y por tipo de infraestructura
+chart_link = api_create(inv, filename = "Aga-InvTotal")
 
-edoinfra<-as.data.frame(table(aga$Estado, aga$Sector))
-colnames(edoinfra)[1]<-"Estado"
-colnames(edoinfra)[2]<-"Sector"
-colnames(edoinfra)[3]<-"Proyectos"
-
-
-i<-1
-
-prueba<-cbind(data$Estado,data$Inversion)
-prueba<-as.data.frame(prueba)
-colnames(prueba)[1]<-"Estado"
-colnames(prueba)[2]<-as.character(subsecretaria[i,])
-
-
+chart_link

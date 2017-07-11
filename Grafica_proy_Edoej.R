@@ -22,7 +22,10 @@ vec_resta<-final$ProyectosTotales-final$ProyectosenEjecucion
 final<-cbind(final,vec_resta)
 
 
-plot_ly(final, x = ~Estado, y = ~ProyectosenEjecucion, type = 'bar', name = 'Proyectos en Ejecucion') %>%
+edo<-plot_ly(final, x = ~Estado, y = ~ProyectosenEjecucion, type = 'bar', name = 'Proyectos en Ejecucion') %>%
   add_trace(y = ~vec_resta, name = 'Proyectos en otras etapas') %>%
   layout(yaxis = list(title = 'Proyectos en Ejecuci´ón por estado'), barmode = 'stack')
 
+link_edo = api_create(edo, filename = "Aga-EstadoEjec")
+
+link_edo
