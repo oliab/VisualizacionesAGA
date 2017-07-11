@@ -4,8 +4,11 @@ library(plyr)
 
 ###Carga de documento central####
 
-aga <-read_csv("~/Documents/VisualizacionAGA/BD_AGA-_Alianza_de_Gobierno_Abierto.csv")
-View(aga)
+aga <-read_csv("~/Documents/VisualizacionesAGA/BD_AGA-_Alianza_de_Gobierno_Abierto.csv")
+#View(aga)
+
+###las credenciales para subir las gr`àficas`
+oli <- plotly(username="oliabherrera", key="1Cth6ncpLnml54WrFpoY")
 
 
 ##Principales inversiones por estado y por infraestructura
